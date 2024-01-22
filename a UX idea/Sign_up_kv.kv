@@ -1,0 +1,126 @@
+
+
+SignupMainLayout:
+
+
+
+<SignupMainLayout>:
+    id: SignupMainLayout
+    canvas.before:
+        Color:
+            rgba:1,1,1,1
+        Rectangle:
+            size:self.size
+            pos:self.pos
+    BoxLayout:
+        id:second_in_conmmand
+        size_hint:.7,None
+        width:300
+        height:400
+        pos_hint:{"center_x":.5,"center_y":.5}
+        padding:'10dp'
+        spacing:"30dp"
+        orientation:"vertical"
+        
+
+        
+        TextInput:
+            hint_text:'Enter your firstname'
+            id:username_text_box
+            size_hint:1,None
+            height:35
+            #opacity:0
+            background_color:0,0,0,0
+            valign:"center"
+            halign:"center"
+            
+        TextInput:
+            hint_text:'Enter your lastname'
+            id:username_text_box
+            size_hint:1,None
+            height:35
+            #opacity:0
+            background_color:0,0,0,0
+            valign:"center"
+            halign:"center"
+            
+        TextInput:
+            hint_text:'Enter your username'
+            id:username_text_box
+            size_hint:1,None
+            height:35
+            #opacity:0
+            background_color:0,0,0,0
+            valign:"center"
+            halign:"center"
+            
+            
+            
+        TextInput:
+            hint_text:'Enter your password'
+            id:password_text_box
+            size_hint:1,None
+            height:35
+            background_color:0,0,0,0
+            valign:"center"
+            halign:"center"
+        TextInput:
+            hint_text:'Enter your password'
+            id:password_text_box
+            size_hint:1,None
+            height:35
+            background_color:0,0,0,0
+            valign:"center"
+            halign:"center"
+        
+        SmartButton:
+            text:'Sign In'
+            bold:True
+            size_hint:1, None #None
+            height:40
+            background_color:0,0,0,0
+            canvas.before:
+                Color:
+                    rgba:1,0,1,1
+                RoundedRectangle:
+                    radius:[20]
+                    pos:self.pos
+                    size:self.size
+        Label:
+            text: "Don't have an account? sign up        "
+            id:sign_up_label
+            
+            font_size:12
+            color:0,0,0,1
+            size_hint:1, None #None
+            height:10
+            
+        FloatLayout:
+            size_hint:None,None
+            size:0,0
+            pos:[sign_up_label.pos[0]+sign_up_label.size[0],sign_up_label.pos[1]]
+            Button:
+                background_color:0,0,0,0
+                text:"here"
+                font_size: 12
+                #size:
+                color:1,0,1,1
+                size_hint: None,None
+                size: 30,10
+                pos:[sign_up_label.pos[0]+sign_up_label.size[0]-25,sign_up_label.pos[1]]
+        
+            
+        FloatLayout:
+            id: text_input_canvas_handler
+            size_hint:None,None
+            canvas.before:
+                Color:
+                    rgba:1,0,1,1
+                SmoothLine:
+                    rounded_rectangle:(username_text_box.x,username_text_box.y,username_text_box.width,username_text_box.height,15)
+                Line:
+                    rounded_rectangle:(password_text_box.x,password_text_box.y,password_text_box.width,password_text_box.height,15,)
+                    
+                    
+            
+        

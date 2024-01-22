@@ -1,0 +1,76 @@
+<MyScreen>:
+    RelativeLayout:
+        orientation:"vertical"
+        Video:
+            id:player_widget
+            source: root.byter #"C:\\Users\\USER\\Downloads\\AnimePahe_Shingeki_no_Kyojin_-_60_BD_720p_SCY.mp4"
+            #source:"https://youtu.be/r-sLPRdlMd4"
+            state:"play"
+            allow_stretch:True
+        #VideoPlayerProgressBar:
+        BoxLayout:
+            #spacing:120
+            size_hint:1,None
+            size:player_widget.width*.5,player_widget.height*.05
+            pos_hint:{"center_x":.5,"center_y":.5}
+            canvas.before:
+                Color:
+                    rgba:0,1,1,0
+                Rectangle:
+                    pos:self.pos
+                    size:self.size
+                    
+            RelativeLayout:
+                canvas.before:
+                    Color:
+                        rgba:0,1,1,1
+                    Rectangle:
+                        pos:self.pos
+                        size:self.size
+
+                MDIconButton:
+                    icon_size:player_widget.width*.05
+                    icon:"skip-backward"
+                    #size_hint:None,None
+                    #size:200,70
+                    pos_hint:{"center_x":.5}
+                    #on_press:
+                        #self.icon="pause" if self.icon=="play" else "play"
+                        #player_widget.state="pause" if player_widget.state=="play" else "play"
+                    canvas.before:
+                        Color:
+                            rgba:0,1,1,1
+                        Rectangle:
+                            pos:self.pos
+                            size:self.size
+
+            RelativeLayout:
+                MDIconButton:
+                    icon_size:player_widget.width*.05
+                    icon:"play"
+                    #size_hint:None,None
+                    #size:200,70
+                    pos_hint:{"center_x":.5}
+                    on_press:
+                        self.icon="pause" if self.icon=="play" else "play"
+                        player_widget.state="pause" if player_widget.state=="play" else "play"
+            RelativeLayout:
+                MDIconButton:
+                    icon_size:player_widget.width*.05
+                    icon:"skip-forward"
+                    #size_hint:None,None
+                    #size:200,70
+                    pos_hint:{"center_x":.5}
+                    #on_press:
+                        #self.icon="pause" if self.icon=="play" else "play"
+                        #player_widget.state="pause" if player_widget.state=="play" else "play"
+            
+        MDIconButton:
+            icon:"stop"
+            #size_hint:None,None
+            #size:200,70
+            pos_hint:{"center_x":.5}
+            on_press:
+                #self.icon="Pause" if self.icon=="play" else "play"
+                player_widget.state="stop" if player_widget.state=="play" else "play"
+        

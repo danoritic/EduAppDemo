@@ -1,0 +1,585 @@
+# :import HoverAndOtherBehavior custom_behavior.HoverAndOtherBehavior
+
+    
+    
+
+
+<HomePageMainframe>:
+    id: HomePageMainframe
+    canvas.before:
+        Color:
+            rgba:1.00, 0.95, 0.80,1
+        RoundedRectangle:
+            pos:self.pos
+            size: self.size
+
+    MyScroll:
+        effect_cls:"ScrollEffect"
+        do_scroll_x:False
+        size_hint:1,.9
+        #bar_width:10
+        pos_hint:{"center_x":.5,"top":.9}#,"center_y":.5
+        
+        BoxLayout:
+            id:carousel
+            padding:[0,"30dp",0,"30dp"]
+            #spacing:"20dp"
+            #pos_hint:{"center_x":.5,"y":.5}
+            
+            #pos:120,300
+            y:50
+            size_hint:1,None
+            height:self.minimum_height
+            spacing:"40dp"
+            orientation:"vertical"
+            AnchorLayout:
+                size_hint:1,None
+                height:130
+                MDCard:
+                    size_hint:None,None
+                    
+                    size:270,130
+                    md_bg_color:"green"
+                    radius:[10,]
+                    elevation: 4
+                    shadow_offset: -7, 7
+                    RelativeLayout:
+                        id:cic #Card Item Container
+                        orientation:"vertical"
+                        Label:
+                            font_size:"15dp"
+                            text:"wallet"
+                            size_hint:None,None
+                            size:130,70
+                            pos:20,cic.height*.7
+                            text_size:self.size
+                            text_color:1.00, 0.95, 0.80,1
+                        MDLabel:
+                            id:amount
+                            font_size:"11dp"
+                            text:"₦ 3,420. 25k"
+                            pos:20,cic.height*.5
+                            size_hint:None,None
+                            size:90,50
+                            text_size:self.size
+                        MDIconButton:
+                            icon:"eye-outline"
+                            #font_size:amount.font_size
+                            icon_size:amount.font_size+10
+                            on_press: self.icon="eye-off-outline" if self.icon=="eye-outline" else "eye-outline"
+                            pos:amount.x+(amount.width)*.59,amount.y-15
+                        SmartButton:
+                            padding:[25,0,]
+                            size_hint:None,None
+                            size:120,27
+                            text:"fund wallet"
+                            text_color:1.00, 0.95, 0.80,1
+                            font_size:amount.font_size+2
+                            pos:cic.width/2+5,cic.height*.45
+                            #line_color: 1.00, 0.95, 0.80,1
+                            background_color: 1.00, 0.95, 0.80,0
+                            #text_size:self.size
+                            canvas.before:
+                                Color:
+                                    rgba:1.00, 0.95, 0.80,1
+                                Line:
+                                    rounded_rectangle:(self.x,self.y,self.size[0],self.size[1],dp(10)) #(self.x,self.y,120,120,10) #
+                        FloatLayout:
+                            size_hint:None,None
+                            size:0,0
+                            canvas.before:
+                                Color:
+                                    rgba:.5,.5,.5,1
+                                RoundedRectangle:
+                                    pos:10,5
+                                    size:250,32
+                        TextInput:
+                            padding:[5,5,]
+                            id: text_field
+                            size_hint:.8,.25
+                            pos:20,5
+                            background_color:0,0,0,0
+                            cursor_color:0,.2,0,1
+                        MDIconButton:
+                            icon: "magnify"
+                            #pos_hint: {"center_y": .5}
+                            pos: text_field.x+text_field.width - self.width + dp(30), -2
+                            #theme_text_color: "Hint"
+                            
+                            
+                        
+                            
+
+                        
+                        
+                        
+            SegmentalLabel:
+                text:"    Courses"
+                color:0,.7,0,1
+            Carousel:
+                ignore_perpendicular_swipes:True
+                id:course_carousel
+                min_move:.05
+                direction:"right"
+                size_hint:None,None
+                size:300,230
+                canvas.before:
+                    Color:
+                        rgba:1,0,1,0
+                    RoundedRectangle:
+                        pos:self.pos
+                        size:self.size
+
+                CourseCard:
+                CourseCard:
+                CourseCard:
+            SegmentalLabel:
+                id:bottom_box_label
+                text:"   Tutorial Videos"
+                color:0,.7,0,1
+            BoxLayout:
+                id:bottom_box
+                size_hint:1,None
+                height:self.minimum_height
+                
+                orientation:"vertical"
+                spacing:"10dp"
+                padding:[0,0,0,"70dp"]
+                BottomBoxTutorialVideo:
+                
+                
+                
+                    
+                    
+                    
+
+    MDBottomAppBar:
+        elevation:0
+
+        MDTopAppBar:
+            
+            elevation:1
+            icon: "cart-variant"
+            type: "bottom"
+            anchor_title:"center"
+            use_overflow:True
+            right_action_items:
+                [
+                ["notebook-edit", lambda x: root.callback2(x), "nuggets"],
+                ]
+            left_action_items:[["book-open-variant", lambda x: root.callback(x), "videos"]]
+            md_bg_bottom_color:0,.5,0,1
+            icon_color:self.md_bg_bottom_color
+    MDTopAppBar:
+        id:top_bar
+        md_bg_color:0,.5,0,1
+        type:"top"
+        pos_hint: {"top": 1}
+        left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+            
+        FloatLayout:
+            id: mini_profile_pic
+            size_hint:None,None
+            size:100,0
+            
+            canvas.after:
+                Color:
+                    rgba:1,1,1,1
+                Ellipse:
+                    pos:top_bar.x+top_bar.width-dp(50),top_bar.y+dp(10)
+                    size:dp(40),dp(40)
+                    source:"guitar.jpg"
+            MDLabel:
+                id:greetings
+                time_type:"Mourning"
+                text:self.time_type+" "+"Daniel"
+                font_size:"13dp"
+                pos:top_bar.x+top_bar.width-self.width-dp(50),top_bar.y+dp(20)
+
+                    
+            
+    MDNavigationDrawer:
+        id:nav_drawer
+        md_bg_color:0,.5,0,.8
+        ScrollView:
+            #size_hint:1,None
+            #height:650 #self.minimum_height
+            BoxLayout:
+                orientation:"vertical"
+                size_hint:1,None
+                height:self.minimum_height
+                pos_hint:{"center_y":1}
+                spacing:10
+                padding:[0,0,0,dp(30)]
+                ProfilePad:
+                    size_hint:1,None
+                    size:1,dp(300)
+                    
+                MDNavigationDrawerLabel:
+                    padding:[10]
+                    text: "Profile"
+                DrawerClickableItem:
+                    padding:[10]
+                    icon: "account-card"
+                    #right_text: "+99"
+                    text_right_color: "#4a4939"
+                    text: "Apply as a tutor"
+                    on_press:print(None)
+                DrawerClickableItem:
+                    padding:[10]
+                    icon: "send"
+                    text: "Generate voucher"
+                DrawerClickableItem:
+                    padding:[10]
+                    icon: "wallet"
+                    text: "wallet"
+                
+                MDNavigationDrawerDivider:
+                    padding:[10]
+                    
+                    color: 1.00, 0.95, 0.80,1
+                MDNavigationDrawerLabel:
+                    padding:[10]
+                    text: "My Companion"
+                DrawerClickableItem:
+                    padding:[10]
+                    icon: "printer"
+                    text: "Generate CBT"
+                MDNavigationDrawerDivider:
+                    padding:[10]
+                    
+                    color: 1.00, 0.95, 0.80,1
+                MDNavigationDrawerLabel:
+                    text: "Need Help?"
+                DrawerClickableItem:
+                    icon: "map-legend"
+                    right_text: "+99"
+                    text_right_color: "#4a4939"
+                    text: "Inbox"
+                    on_press:print(None)
+                
+                DrawerClickableItem:
+                    icon: "headset"
+                    text: "Help Desk"
+                DrawerClickableItem:
+                    icon: "account-multiple-plus"
+                    text: "Invite"
+                DrawerClickableItem:
+                    icon: "logout"
+                    text: "Logout"
+                
+                
+                    
+                    
+                    color : 1.00, 0.95, 0.80,1
+                
+                    
+#-------------------------------------------------------------------------------------
+
+
+            
+                    
+            
+
+<SegmentalLabel@MDLabel>:
+    canvas.before:
+        Color:
+            rgba:0,.5,0,.5
+        Line:
+            points:[self.x+10,self.y-15,self.x+self.width-10,self.y-15]         
+#<MyScroll@ScrollView>:
+    
+<CourseCard>:
+    id:card
+    pos_hint:{"center_x":.5,"center_y":.5}
+    size_hint:.87,None
+    #size_hint:None,None
+    size:150,230
+    background_color:0,0,0,0
+    open:"free"
+    
+    canvas.before:
+        Color:
+            rgba:0,.2,0,1
+        RoundedRectangle:
+            pos:[self.x*1.2,self.y]
+            size: [i*.9 for i in self.size]
+        Color:
+            rgba:.9,.9,.9,0
+        RoundedRectangle:
+            pos:[self.x,1.4*self.y+10]
+            size:[i*.9 for i in self.size]
+
+        
+    MDSmartTile:
+        _open:False
+        on_press:
+            root.display_view() if self._open else root.display_view()
+            
+        radius: "10dp"
+        box_radius: [0, 0, "10dp", "10dp"]
+        box_color: 0, .4, 0, .9
+        source: "guitar.jpg"
+        #pos_hint: {"center_x": .5, "center_y": .5}
+        pos:[self.x,1.4*root.y+10]
+        size_hint: None, None
+        size: [i*.9 for i in root.size]
+        BoxLayout:
+            #orientation:vertical"
+            pos_hint: {"y": -.35}
+            padding:[0,]
+            spacing:0
+            size_hint:1,None
+            height:"50dp"
+            orientation:"vertical"
+            
+
+            
+            Label:
+            #Button:
+                size_hint_x:1
+                pos_hint: {"center_x":.5,"top":1}
+                text: "science"
+                bold: True
+                color: 1, 1, 1, 1
+            BoxLayout:
+                spacing:0
+
+
+                MDIconButton:
+                    size_hint_y:None
+                    height:"10dp"
+                    icon_size:"15dp"
+                    icon: "star-outline"
+                    theme_icon_color: "Custom"
+                    icon_color: 1, 0, 0, 1
+                    pos_hint: {"y": -.1}
+                    on_press: self.icon = "star" if self.icon == "star-outline" else "star-outline"
+                MDIconButton:
+                    size_hint_y:None
+                    height:"10dp"
+                    icon_size:"15dp"
+                    icon: "star-outline"
+                    theme_icon_color: "Custom"
+                    icon_color: 1, 0, 0, 1
+                    pos_hint: {"y": -.1}
+                    on_press: self.icon = "star" if self.icon == "star-outline" else "star-outline"
+                MDIconButton:
+                    size_hint_y:None
+                    height:"10dp"
+                    icon_size:"15dp"
+                    icon: "star-outline"
+                    theme_icon_color: "Custom"
+                    icon_color: 1, 0, 0, 1
+                    pos_hint: {"y": -.1}
+                    on_press: self.icon = "star" if self.icon == "star-outline" else "star-outline"
+                MDIconButton:
+                    size_hint_y:None
+                    height:"10dp"
+                    icon_size:"15dp"
+                    icon: "star-outline"
+                    theme_icon_color: "Custom"
+                    icon_color: 1, 0, 0, 1
+                    pos_hint: {"y": -.1}
+                    on_press: self.icon = "star" if self.icon == "star-outline" else "star-outline"
+
+
+<TutorialVideoCard@BoxLayout>:
+    id:card
+    pos_hint:{"center_x":.5,"center_y":.5}
+    size_hint:.82,None
+    #size_hint:None,None
+    size:140,200
+    background_color:0,0,0,0
+    
+    MDSmartTile:
+        radius: ["10dp","10dp",0,0]
+        box_radius: [0, 0, "10dp", "10dp"]
+        box_color: 0, .4, 0, .9
+        source: "guitar.jpg"
+        #pos_hint: {"center_x": .5, "center_y": .5}
+        pos:[self.x,1.1*root.y]
+        size_hint: None, None
+        size: root.size
+        overlap:False
+        BoxLayout:
+            pos:10,10
+            size_hint:None,None
+            size:200,self.minimum_height
+            spacing:"5dp"
+            canvas.before:
+                Color:
+                    rgba:0,.2,0,0
+                RoundedRectangle:
+                    pos:self.pos
+                    size:self.size
+            RelativeLayout:
+                size_hint:None,None
+                size:30,30
+                #pos_hint:{"center_y":.5}
+                #y:-10
+                canvas.before:
+                    Color:
+                        rgba:1,1,1,1
+                    RoundedRectangle:
+                        pos:[self.x,self.y-7] #self.pos
+                        size:self.size
+                        source: "guitar.jpg"
+            BoxLayout:
+                padding:["10dp",0]
+                spacing:0
+                orientation:"vertical"
+                Label:
+                    size_hint:None,None
+                    size:150,15
+                    font_size:"12dp"
+                    text:"Topic"
+                    text_size:self.size
+                Label:
+                    size_hint:None,None
+                    size:150,22
+                    font_size:"12dp"
+                    text:"2K views "+":"+" 2 weeks ago"
+                    text_size:self.size
+
+
+            
+
+<ProfilePad@FloatLayout>:
+    padding:[0,]
+    id:ProfilePad
+    canvas.before:
+        Color:
+            rgba:1,1,1,1
+        Ellipse:
+            pos:self.x,self.y+40#top_bar.x+top_bar.width-dp(50),top_bar.y+dp(10)
+            size:dp(200),dp(200)
+            source:"guitar.jpg"
+    Label:
+        text:"Danoritic"
+        bold:True
+        text_size:self.size
+        size_hint:None,None
+        size:60,20
+        pos:ProfilePad.x+dp(40),ProfilePad.y+dp(9)
+
+
+    Label:
+        size_hint:None,None
+        size:55,15
+        text:"Verified"
+        bold:True
+        color:0,0,0,1
+        text_size:self.size
+        pos:ProfilePad.x+ProfilePad.width/2-dp(0),ProfilePad.y+dp(9)
+        font_size:"11dp"
+        canvas.before:
+            Color:
+                rgba:0,1,1,1
+            RoundedRectangle:
+                pos:self.pos
+                size:self.size
+                radius:[dp(7)]
+        halign:'center'
+        valign:'center'
+    
+        
+        
+        #md_bg_color:0,1,1,1
+        
+        
+
+
+    MDIconButton:
+        size_hint:None,None
+        size:50,50
+        icon:"camera"
+        pos:ProfilePad.x+ProfilePad.width-self.width-dp(30),ProfilePad.y+dp(39)
+        #pos:100,200
+        on_press:print(ProfilePad.pos)
+    
+
+    
+<DrawerClickableItem@BoxLayout>: #HoverAndOtherBehavior
+    icon:"" # circle
+    right_text:''
+    text:""
+    press:False
+    spacing:5
+    #size_hint:1,.1
+    pos_hint:{"center_y":.5}
+    on_press:print(1234)
+    size_hint:1,None
+    size:1,dp(50)
+
+    canvas.before:
+        Color:
+            rgba:0,1,1,0
+        Rectangle:
+            pos:self.pos
+            size:self.size #200)
+    MDIcon:
+        id:icon
+        size_hint:.1,1
+        icon:root.icon
+    Button:
+        size_hint:1,1
+        id:main_text
+        text:root.text
+        text_size:self.size
+        on_press:
+            root.press=not root.press
+            #print("W%TF",root.press)
+        #on_release:root.press=False
+        background_color:0,0,0,0
+        
+    Label:
+        #pos_hint:{"center_y":.5}
+        size_hint:.1,1
+        id:main_text
+        text:root.right_text
+        text_size:self.size
+        halign:"center"
+<Nugget@BoxLayout>:
+    padding:[0,30,0,0]
+    orientation:"vertical"
+    size_hint:None,None
+    size:120,120
+    icon:'mail'
+    text:'mail'
+    canvas.before:
+        Color:
+            rgba:0,.5,0,1
+        RoundedRectangle:
+            pos:self.pos
+            size:self.size
+    MDIconButton:
+        padding:[0,60,0,0]
+        icon:root.icon
+        size_hint:1,.9
+    Label:
+        text:root.text
+    
+<BottomBoxTutorialVideo>:
+    id:BottomBoxTutorialVideo
+    spacing:10
+    orientation:"vertical"
+    size_hint:1,None
+    size:120,self.minimum_height
+    TutorialVideoCard:
+    TutorialVideoCard:
+    TutorialVideoCard:
+<BottomBoxNugget>:
+    id:BottomBoxNugget
+    cols:2
+    pos_hint:{"center_x":.5}
+    spacing:dp(20)
+    padding:[dp(20)]
+    #orientation:"lr-tb"
+    size_hint:1,None
+    size:120,self.minimum_height
+    Nugget:
+    Nugget:
+    Nugget:
+
+    

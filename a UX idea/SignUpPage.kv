@@ -1,0 +1,111 @@
+
+
+#SignupMainLayout:
+
+
+
+<SignupMainLayout>:
+    id:SignupMainLayout
+    canvas.before:
+        Color:
+            rgba:1,1,1,1
+        Rectangle:
+            size:self.size
+            pos:self.pos
+    BoxLayout:
+        id:second_in_command
+        size_hint:.9,None
+        width:300
+        height:400
+        pos_hint:{"center_x":1,"center_y":.3}
+        padding:'10dp'
+        spacing:"20dp"
+        orientation:"vertical"
+        
+
+
+        
+        TextInput:
+            hint_text:'Enter your firstname'
+            id:firstname_text_box
+            size_hint:1,None
+            height:35
+            #opacity:0
+            background_color:0,0,0,0
+            valign:"center"
+            halign:"center"
+            
+        TextInput:
+            hint_text:'Enter your lastname'
+            id:lastname_text_box
+            size_hint:1,None
+            height:35
+            #opacity:0
+            background_color:0,0,0,0
+            valign:"center"
+            halign:"center"
+            
+        TextInput:
+            hint_text:'Enter your username'
+            id:username_text_box
+            size_hint:1,None
+            height:35
+            #opacity:0
+            background_color:0,0,0,0
+            valign:"center"
+            halign:"center"
+            
+            
+            
+        TextInput:
+            hint_text:'Enter your password'
+            id:password_text_box
+            size_hint:1,None
+            height:35
+            background_color:0,0,0,0
+            valign:"center"
+            halign:"center"
+        TextInput:
+            hint_text:'confirm password'
+            id:confirm_password_text_box
+            size_hint:1,None
+            height:35
+            background_color:0,0,0,0
+            valign:"center"
+            halign:"center"
+        
+        SmartButton:
+            text:'Sign up'
+            bold:True
+            size_hint:None, None #None
+            pos_hint:{"center_x":.5,"center_y":.5}
+            width: 150
+            height:40
+            background_color:0,0,0,0
+            canvas.before:
+                Color:
+                    rgba:1,0,1,1
+                RoundedRectangle:
+                    radius:[20]
+                    pos:self.pos
+                    size:self.size
+        FloatLayout:
+            id: text_input_canvas_handler
+            size_hint:None,None
+            size:0,0
+            canvas.before:
+                Color:
+                    rgba:1,0,1,1
+                SmoothLine:
+                    rounded_rectangle:(username_text_box.x,username_text_box.y,username_text_box.width,username_text_box.height,15)
+                Line:
+                    rounded_rectangle:(password_text_box.x,password_text_box.y,password_text_box.width,password_text_box.height,15,)
+                Line:
+                    rounded_rectangle:(confirm_password_text_box.x,confirm_password_text_box.y,confirm_password_text_box.width,confirm_password_text_box.height,15,)
+                Line:
+                    rounded_rectangle:(firstname_text_box.x,firstname_text_box.y,firstname_text_box.width,firstname_text_box.height,15,)
+                Line:
+                    rounded_rectangle:(lastname_text_box.x,lastname_text_box.y,lastname_text_box.width,lastname_text_box.height,15,)
+                
+            
+        

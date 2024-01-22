@@ -1,0 +1,187 @@
+#: include SignUpPage.kv
+
+GrandMaster:
+<SignupMainLayout>:       
+
+<MyScreenManager>:
+    #current:"login_page"
+    Screen:
+        name:'login_page'
+        AuthMainLayout:
+            master:root
+    Screen:
+        id: signup_page
+        name:'signup_page'
+        SignupMainLayout:
+
+<GrandMaster@RelativeLayout>:
+    Image:
+        pos:0,+200
+        source:"C:/code/serious_work/ios app for mr david/ElitePage_kivy/resource/Ellipse 378.png"
+    MyScroll:
+        id:the_scroll
+        direction:"bottom"
+        BoxLayout:
+            orientation:"vertical"
+            size_hint_y:None
+            height:self.minimum_height
+            BoxLayout:
+                size_hint_y:None
+                height:650
+                AuthMainLayout:
+                    master:root
+                    id:AuthMainLayout
+                    the_scroll:the_scroll
+            BoxLayout:
+                size_hint_y:None
+                height:650
+                SignupMainLayout:
+                    master:root
+                    the_scroll:the_scroll
+                    id:SignupMainLayout
+
+        
+        
+    
+<AuthMainLayout>:
+    id: AuthMainLayout
+    size_hint_y:1
+    height:650
+    symbol_casen:symbol_casen
+    sign_up_page_button:sign_up_page_button
+    pos_hint:{"center_x":.5,"center_y":.5}
+    canvas.before:
+        Color:
+            rgba:0,1,1,0
+        Rectangle:
+            size:self.size
+            pos:self.pos
+        
+    RelativeLayout:
+        id:image_handler
+        #size_hint:.1,.1
+        #size_hint:None,None
+        #size:0,0
+
+        Image:
+            id:quad_1
+            source:"C:/code/serious_work/ios app for mr david/ElitePage_kivy/resource/Rectangle 877.png"
+            pos:root.height/2-self.height/2,root.width/2-self.width/2
+        Image:
+            id:quad_2
+            source:"C:/code/serious_work/ios app for mr david/ElitePage_kivy/resource/Rectangle 877 (1).png"
+            pos:0,-self.height*.8
+    RelativeLayout:
+        id:symbol_casen
+        pos_hint:{"top":.8,"center_x":.5}
+        size_hint:None,None
+        height:70
+        
+        #pos:0,0 #AuthMainLayout.x+AuthMainLayout.width/2,AuthMainLayout.height*.8,
+        Image:
+            id:imaging
+            source:"C:/code/serious_work/ios app for mr david/ElitePage_kivy/resource/rhs 2.png"
+            #pos:0,0#self.width,root.width#root.width/2-self.width/2,(root.height/2)-20
+            pos_hint:{"center_x":.5,"y":.5}
+
+    ElevatedTextInput:
+        pos_hint:{"center_y":.64,"center_x":.5,}
+        size_hint_x:.9
+        width:270
+        id:username_text_box
+        hint_text:"Enter your username"
+        write_tab:False
+        on_text_validate:password_text_box.input.focus=True
+    
+        
+    ElevatedTextInput:
+        pos_hint:{"center_y":.5,"center_x":.5,}
+        size_hint_x:.9
+        width:270
+        id:password_text_box
+        hint_text:"Enter your password"
+        on_text_validate:print(1234) #login_button.on_press
+    RelativeLayout:
+        #pos_hint:{"center_y":.47,"x":0}
+        pos:[password_text_box.pos[0],password_text_box.pos[1]-30,]
+        size_hint:None,None,
+        size:130,15
+        Button:
+            text:"Forgot password ?"
+            color:0.43, 0.39, 0.39,1
+            background_color:0,0,0,0
+            font_size:"11dp"
+    RelativeLayout:
+        pos_hint:{"center_y":.33,"right":.9}
+        #pos:[password_text_box.pos[0],password_text_box.pos[1]-30,]
+        size_hint:None,None,
+        size:140,40
+        SmartButton:
+            id:login_button
+            text: "Login"
+            background_color:0,0,0,0
+            font_size:"20dp"
+            on_press:print(12)
+            canvas.before:
+                Color:
+                    rgba:0.00, 0.50, 0.00,1
+                RoundedRectangle:
+                    pos:self.pos
+                    size:self.size
+                    radius:[20]
+    RelativeLayout:
+        pos_hint:{"center_y":.21,"center_x":.48}
+        size_hint:None,None
+        size: 150,30
+        Label:
+            id: sign_up_anchor
+            text:"Not Registered?"
+            font_size:"10dp"
+            color:0.43, 0.39, 0.39,1
+        Button:
+            id:sign_up_page_button
+            pos:[sign_up_anchor.pos[0]+sign_up_anchor.width/2-23,sign_up_anchor.pos[1]]
+            text:"Signup"
+            font_size:"10dp"
+            color:0.00, 0.50, 0.00,1
+            background_color:0,0,0,0
+            on_press: root.the_scroll.scroll_to(root.master.ids.SignupMainLayout.login_page_button,padding=40)
+    RelativeLayout:
+        pos_hint:{"center_y":.062,"center_x":.665}
+        size_hint:None,None
+        size: 150,30
+        canvas.before:
+            Color:
+                rgba:0.24, 0.75, 0.24,1
+            Ellipse:
+                pos:self.pos
+                size:35,35
+            Color:
+                rgba:1,1,1,1
+            SmoothLine:
+                width:1.5
+                points:[self.pos[0]+9,self.pos[1]+16,self.pos[0]+18,self.pos[1]+6,self.pos[0]+27,self.pos[1]+16,]
+            SmoothLine:
+                width:1.5
+                points:[self.pos[0]+18,self.pos[1]+6,self.pos[0]+18,self.pos[1]+30,]
+    RelativeLayout:
+        pos_hint:{"center_y":.072,"x":0.021}
+        size_hint:None,None
+        size: 150,30
+        canvas.before:
+            Color:
+                rgba:0.07, 0.48, 0.07,1
+            Ellipse:
+                pos:self.pos
+                size:35,35
+            Color:
+                rgba:1,1,1,1
+            SmoothLine:
+                width:1.5
+                points:[self.pos[0]+9,self.pos[1]+20,self.pos[0]+18,self.pos[1]+30,self.pos[0]+27,self.pos[1]+20,]   #[self.pos[0]+9,self.pos[1]+16,self.pos[0]+18,self.pos[1]+6,self.pos[0]+27,self.pos[1]+16,]
+            SmoothLine:
+                width:1.5
+                points:[self.pos[0]+18,self.pos[1]+6,self.pos[0]+18,self.pos[1]+30,]
+            
+                
+

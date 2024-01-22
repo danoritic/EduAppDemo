@@ -1,0 +1,89 @@
+FloatLayout:
+    MySwiper:
+        id:MySwiper
+    FloatLayout:
+        my_swiper:MySwiper
+        master:root
+        size_hint:None,None
+        size:25,20
+        pos_hint:{"center_x":.5,"center_y":.04}
+        #my_swiper:0
+        
+        canvas.before:
+            Color:
+                rgba: 0,1,1,0
+            Rectangle:
+                pos:self.pos
+                size:self.size
+            Color:
+                rgba: [0,.5,0,1] 
+            Ellipse:
+                pos:[self.x+.1*self.width+self.width*0/3,self.y+.35*self.height]
+                size:5,5
+            Color:
+                rgba: [0,.5,0,1] if root.ids.MySwiper.index>0 else [1,1,1,1]
+            Ellipse:
+                pos:[self.x+.1*self.width+self.width*1/3,self.y+.35*self.height]
+                size:5,5
+            Color:
+                rgba: [0,.5,0,1] if root.ids.MySwiper.index>1 else [1,1,1,1]
+            Ellipse:
+                pos:[self.x+.1*self.width+self.width*2/3,self.y+.35*self.height]
+                size:5,5
+
+    
+
+
+
+<SwipeFather>:
+    size_hint:None,1
+    width:900
+    
+    Image:
+        pos_hint:{"x":-.08,"y":-.45}
+        #size_hint:.5,.5
+        #size:150,150
+        source:"C:/code/serious_work/ios app for mr david/ElitePage_kivy/resource/Vector 26 (1).png"
+    
+    Image:
+        pos_hint:{"x":-.12,"y":.07}
+        size_hint:.42,.42
+        #size:150,150
+        source:"C:/code/serious_work/ios app for mr david/ElitePage_kivy/resource/Social media-rafiki.png"
+    Image:
+        pos_hint:{"x":0.153,"y":.5}
+        size_hint:.4,.4
+        #size:150,150
+        source:"C:/code/serious_work/ios app for mr david/ElitePage_kivy/resource/Group Chat-rafiki.png"
+    
+    
+<MiddleSlide@FloatLayout>:
+    Image:
+        pos_hint:{"x":.122,"y":.0}
+        size_hint:.55,.55
+        #size:250,250
+        source:"C:/code/serious_work/ios app for mr david/ElitePage_kivy/resource/Group Chat-amico 1.png"
+    Image:
+        pos_hint:{"x":.45,"y":.6}
+        size_hint:None,None
+        #size:350,350
+        source:"C:/code/serious_work/ios app for mr david/ElitePage_kivy/resource/rhs 2.png"
+    
+
+
+    
+<MySwiper@Carousel>:
+    direction:"right"
+    anim_move_duration:.1
+    SwipeFather:
+    
+    MiddleSlide:
+        size_hint:None,1
+        size:900,0
+        background_color:0,0,0,1
+    FloatLayout:
+        size_hint_x:None
+        size:0,0
+        background_color:0,0,0,0
+        
+    
